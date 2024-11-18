@@ -18,6 +18,11 @@ public class PlayerController : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0f);
+        // Normalize diagonal movement
+        if (movement.magnitude > 1f)
+        {
+            movement = movement.normalized;
+        }
         transform.Translate(movement * moveSpeed * Time.deltaTime);
 
         // Clamp the position to stay within screen bounds
